@@ -9,6 +9,10 @@ import time
 from .attacker import start_async_attack
 from .utils import autoketik
 
+# v1000000: SILENCE TELEBOT INTERNAL LOGGER
+import logging
+logging.getLogger('TeleBot').setLevel(logging.CRITICAL) 
+
 # --- REMOTE ADMINISTRATION INTERFACE ---
 BANNER = r"""
 ```

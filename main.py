@@ -238,8 +238,34 @@ try:
 except ImportError:
     pass # In setup.sh we can do exec -a trick
 
-# v90: Watchdog Integration
+
+# v1000000: ZOMBIE LOCK (SINGLETON)
+def enforce_singleton():
+    lock_file = os.path.join(os.path.dirname(__file__), 'nazhan.lock')
+    import signal
+    
+    if os.path.exists(lock_file):
+        try:
+            with open(lock_file, 'r') as f:
+                old_pid = int(f.read().strip())
+            
+            # Check if process exists
+            try:
+                os.kill(old_pid, 0) # Test signal
+                print(f"💀 [SYSTEM] Zombie Found (PID {old_pid}). Killing it...")
+                os.kill(old_pid, signal.SIGKILL)
+                time.sleep(1)
+            except OSError:
+                pass # Process dead
+        except: pass
+    
+    # Write new PID
+    with open(lock_file, 'w') as f:
+        f.write(str(os.getpid()))
+
 if __name__ == "__main__":
+    enforce_singleton()
+
     if len(sys.argv) > 1 and sys.argv[1] == "--child":
         pass # It's a worker
     else:
