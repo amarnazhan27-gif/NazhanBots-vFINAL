@@ -10,7 +10,7 @@ from .attacker import start_async_attack
 from .utils import autoketik
 
 # --- REMOTE ADMINISTRATION INTERFACE ---
-BANNER = """
+BANNER = r"""
 ```
    ___  ___  __  ___  _____  ___ 
   / _ \/ _ \/  |/  / /  _/ |/ / |

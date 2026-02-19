@@ -18,10 +18,10 @@ git remote remove origin 2>/dev/null
 git remote add origin "$REPO_URL"
 echo "✅ Remote set to: $REPO_URL"
 
-# 4. Push
-echo -e "\e[1;36m🚀 Sedang meng-upload... (Masukkan Username & Password/Token jika diminta)\e[0m"
+# 4. Push (FORCE)
+echo -e "\e[1;36m🚀 Sedang meng-upload (FORCE MODE)...\e[0m"
 git branch -M main
-git push -u origin main
+git push -u origin main --force
 
 echo "-----------------------------------------------------------"
 if [ $? -eq 0 ]; then
