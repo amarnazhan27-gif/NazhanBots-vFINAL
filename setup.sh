@@ -11,7 +11,7 @@ echo -e "\e[1;34m[2/5] Updating Termux Repositories...\e[0m"
 pkg update -y && pkg upgrade -y
 
 echo -e "\e[1;34m[3/5] Installing System Dependencies...\e[0m"
-pkg install python git tesseract -y
+pkg install python git tesseract rust binutils libffi openssl-tool -y
 
 # 0. Create Directories
 echo -e "\e[1;34m📂 [SETUP] Creating Directories...\e[0m"
