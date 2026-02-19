@@ -312,6 +312,15 @@ def handle_update(message):
     except Exception as e:
         bot.reply_to(message, f"❌ Update Fail: {e}")
 
+def send_attack_log(msg):
+    """Helper to send logs to Telegram (Best Effort)"""
+    try:
+        if TOKEN != "DUMMY_TOKEN" and CHAT_ID:
+            # Check if bot is ready
+            if hasattr(bot, 'send_message'):
+                bot.send_message(CHAT_ID, msg)
+    except: pass
+
 def run_attack_loop(number):
     global ATTACK_RUNNING
     ATTACK_RUNNING = True
@@ -323,8 +332,8 @@ def run_attack_loop(number):
     asyncio.set_event_loop(loop)
     
     while ATTACK_RUNNING:
-        loop.run_until_complete(start_async_attack(apis, number, duration=60))
-        # Hot reload logic inside start_async_attack handled, but loop here keeps it alive
+        # v70: Pass log callback
+        loop.run_until_complete(start_async_attack(apis, number, duration=60, log_callback=send_attack_log))
         
     loop.close()
 
@@ -333,7 +342,8 @@ def run_attack_loop_oneshot(number):
         with open(APIS_PATH, "r") as f: apis = json.load(f)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_until_complete(start_async_attack(apis, number, duration=30))
+        # v70: Pass log callback
+        loop.run_until_complete(start_async_attack(apis, number, duration=30, log_callback=send_attack_log))
         loop.close()
     except: pass
 
