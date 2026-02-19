@@ -49,6 +49,17 @@ def generate_header_pool():
     # Pre-generate 100 variations on startup
     for _ in range(100):
         profile = random.choice(UA_DB)
+        
+        # v80: App Mimicry (Real OTP Bypass)
+        # Rotates package names to look like legitimate app traffic
+        package_id = random.choice([
+            "com.dana", "id.dana", 
+            "com.gojek.app", 
+            "com.shopee.id", 
+            "com.tokopedia.tkpd",
+            "com.telkomsel.telkomselcm"
+        ])
+        
         h = {
             "User-Agent": profile["ua"],
             "Accept": "application/json, text/plain, */*",
@@ -57,7 +68,9 @@ def generate_header_pool():
             "Origin": "https://www.google.com",
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Site": "cross-site",
+            "Sec-Fetch-Site": "same-origin", # Critical for Shadowban Bypass
+            "X-Requested-With": package_id,  # Critical for App APIs
+            "Connection": "keep-alive"
         }
         if profile["ch_ua"]:
             h["Sec-CH-UA"] = profile["ch_ua"]
@@ -67,7 +80,7 @@ def generate_header_pool():
 
 def get_sophisticated_headers():
     if not HEADER_POOL: generate_header_pool()
-    return random.choice(HEADER_POOL).copy() # return copy to avoid modification issues
+    return random.choice(HEADER_POOL).copy()
 
 def process_payload(data, number, formatted_number):
     if data is None: return None
