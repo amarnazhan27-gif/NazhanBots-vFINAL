@@ -22,6 +22,7 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
     # v17000: Global Circuit Rotation Counter
     REQUESTS_SINCE_ROTATION = 0
     ROTATION_THRESHOLD = 50 
+    proxy_fixed = None # v100: Fix NameError
 
     print(f"🚀 Launching Async Attack on {number} for {duration} seconds...")
     
