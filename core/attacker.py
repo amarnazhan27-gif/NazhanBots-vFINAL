@@ -112,8 +112,16 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
                  try:
                      api_path = os.path.join(os.path.dirname(__file__), '../config/apis.json')
                      with open(api_path, 'r') as f: new_apis = json.load(f)
-                     valid_apis = [api for api in new_apis if api.get("provider", "all") == "all" or api.get("provider") == provider]
-                 except: pass
+                     
+                     if not new_apis:
+                         # If reload fails/empty, keep existing valid_apis or use fallback
+                         valid_apis = FALLBACK_APIS
+                     else:
+                         # Universal Mode: Use all, ignore provider
+                         valid_apis = new_apis
+                 except Exception: 
+                     # If file read error, keep using current valid_apis
+                     pass
 
             tasks = []
             
