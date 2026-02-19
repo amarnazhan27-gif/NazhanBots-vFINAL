@@ -370,6 +370,11 @@ def start_bot():
             
         bot.infinity_polling(timeout=20, long_polling_timeout=10)
     except Exception as e:
+        # v100: Conflict Handling (Zombie Process)
+        if "409" in str(e) or "Conflict" in str(e):
+             print("⚠️ [TELEGRAM] Conflict detected (Another Instance Running). C2 going offline.")
+             return # Stop Polling, let the other instance handle C2
+             
         # v100: Suppress Noise in Lite Mode
         if os.environ.get("NAZHAN_LITE") != "1":
             print(f"❌ [TELEGRAM] Connection Error: {e}")
