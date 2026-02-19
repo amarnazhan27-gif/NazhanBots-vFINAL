@@ -262,7 +262,8 @@ async def smart_send_attack(session, api, number, formatted_number, proxy_url, c
             # v41: Smart Backoff Trigger
             if status_msg == "BLOCKED" or response.status == 429:
                 if cooldown_map is not None:
-                     cooldown_map[url] = time.time() + 60 
+                     cooldown_map[url] = time.time() + 5 # v100: Reduced from 60s to 5s (Aggressive)
+                if is_lite: print(f"🚫 {name} -> BLOCKED (Retrying in 5s)")
                 return
 
             if is_success:
@@ -293,7 +294,7 @@ async def smart_send_attack(session, api, number, formatted_number, proxy_url, c
                 from .brain import feedback
                 
             else:
-                 pass
+                 if is_lite: print(f"❌ {name} -> {status_msg}")
 
     except Exception as e:
         # v33000: Error Logging (Async Wrapper)
