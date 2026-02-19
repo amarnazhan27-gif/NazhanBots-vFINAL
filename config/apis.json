@@ -1,16 +1,6 @@
 [
     {
-        "name": "Nutriclub-ID",
-        "url": "https://membership.nutriclub.co.id/api/otp/send",
-        "method": "POST",
-        "provider": "all",
-        "data": {
-            "phone": "{c}",
-            "action": "registration"
-        }
-    },
-    {
-        "name": "KlikDokter-V2",
+        "name": "[WA] KlikDokter",
         "url": "https://auth.klikdokter.com/api/v1/otp",
         "method": "POST",
         "provider": "all",
@@ -20,7 +10,17 @@
         }
     },
     {
-        "name": "PHD-Delivery",
+        "name": "[SMS] Nutriclub",
+        "url": "https://membership.nutriclub.co.id/api/otp/send",
+        "method": "POST",
+        "provider": "all",
+        "data": {
+            "phone": "{c}",
+            "action": "registration"
+        }
+    },
+    {
+        "name": "[SMS] PHD-Delivery",
         "url": "https://phd.co.id/en/users/sendOTP",
         "method": "POST",
         "provider": "all",
@@ -29,7 +29,36 @@
         }
     },
     {
-        "name": "Eraspace-Auth",
+        "name": "[CALL] Tokopedia-Voice",
+        "url": "https://accounts.tokopedia.com/otp/c/page/request-otp-v2",
+        "method": "POST",
+        "provider": "all",
+        "headers": {
+            "X-Device-ID": "{random_device_id}",
+            "X-Source": "android"
+        },
+        "data": {
+            "msisdn": "{c}",
+            "otp_type": "112",
+            "mode": "call"
+        }
+    },
+    {
+        "name": "[CALL] Grab-Voice",
+        "url": "https://api.grab.com/grabid/v1/phone/otp",
+        "method": "POST",
+        "provider": "all",
+        "headers": {
+            "X-Grab-Device-ID": "{random_device_id}"
+        },
+        "data": {
+            "phoneNumber": "{phone}",
+            "countryCode": "ID",
+            "method": "CALL"
+        }
+    },
+    {
+        "name": "[SMS] Eraspace",
         "url": "https://api.eraspace.com/customer/v1/otp",
         "method": "POST",
         "provider": "all",
@@ -39,21 +68,12 @@
         }
     },
     {
-        "name": "Marugame-Udon",
+        "name": "[SMS] Marugame",
         "url": "https://api.marugame.co.id/api/v1/auth/otp",
         "method": "POST",
         "provider": "all",
         "data": {
             "phoneNumber": "{phone}"
-        }
-    },
-    {
-        "name": "MyTelkomsel-Web",
-        "url": "https://tdw.telkomsel.com/api/v1/otp/request",
-        "method": "POST",
-        "provider": "telkomsel",
-        "data": {
-            "msisdn": "{c}"
         }
     }
 ]
