@@ -174,12 +174,17 @@ async def smart_send_attack(session, api, number, formatted_number, proxy_url, c
     # Process Payload
     data = process_payload(data, number, formatted_number)
     
-    headers = api.get("headers", {}).copy()
+    # v100: Header Priority Fix (API > Random)
+    # We want Sophisticated Headers as base, but API headers should OVERRIDE them.
+    base_headers = get_sophisticated_headers()
+    api_headers = api.get("headers", {}).copy()
     
-    # v100: Process Header Placeholders (Critical for God Mode)
-    headers = process_payload(headers, number, formatted_number)
+    # Process placeholders in API headers
+    api_headers = process_payload(api_headers, number, formatted_number)
     
-    headers.update(get_sophisticated_headers()) 
+    # Merge: Base updates with API (API wins)
+    base_headers.update(api_headers)
+    headers = base_headers
     
     if host_header:
         headers["Host"] = host_header # Essential for Shared Hosting / SNI
