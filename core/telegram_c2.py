@@ -370,7 +370,9 @@ def start_bot():
             
         bot.infinity_polling(timeout=20, long_polling_timeout=10)
     except Exception as e:
-        print(f"❌ [TELEGRAM] Connection Error: {e}")
+        # v100: Suppress Noise in Lite Mode
+        if os.environ.get("NAZHAN_LITE") != "1":
+            print(f"❌ [TELEGRAM] Connection Error: {e}")
         time.sleep(5)
 
     
