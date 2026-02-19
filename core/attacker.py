@@ -63,7 +63,7 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
     if not proxy_fixed:
         from .proxy_scraper import scrape_proxies
         from .proxy_validator import filter_proxies
-        raw_proxies = scrape_proxies()
+        raw_proxies = scrape_proxies() or []
         high_quality_proxies = await filter_proxies(raw_proxies)
         
         if not high_quality_proxies:

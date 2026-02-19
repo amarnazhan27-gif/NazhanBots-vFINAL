@@ -58,10 +58,12 @@ def scrape_proxies():
         with open(PROXY_FILE, "w") as f:
             f.write("\n".join(proxies))
         print(f"✅ [PROXY] Updated Repository: {len(proxies)} Active Nodes.")
+        return list(proxies)
     else:
         print("⚠️ [PROXY] Network Down. Using Emergency Backup.")
         with open(PROXY_FILE, "w") as f:
             f.write("\n".join(STATIC_FALLBACKS))
+        return STATIC_FALLBACKS
             
 def get_random_proxy():
     if not os.path.exists(PROXY_FILE):
