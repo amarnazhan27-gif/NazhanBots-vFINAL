@@ -5,4 +5,4 @@ echo -e "\e[1;31m🚀 STARTING ULTRA-LITE MODE (NO LIMITS)\e[0m"
 pkill -f python || true
 
 # Run Ultra Script
-python ultra.py
+python -u ultra.py
