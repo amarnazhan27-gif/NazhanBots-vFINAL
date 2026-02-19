@@ -100,19 +100,23 @@ async def fire(session, api, number, proxy):
             "url": url,
             "headers": final_headers,
             "proxy": proxy,
-            "timeout": 5
+            "timeout": 10, # Increased timeout
+            "ssl": False   # vBypass: Disable SSL Verify
         }
         if data: args["json"] = data
         if form_data: args["data"] = form_data
         
         async with session.request(**args) as resp:
+            text = await resp.text()
             if resp.status in [200, 201]:
-                print(f"✅ {api['name']} -> SENT")
+                print(f"✅ {api['name']} -> SENT (200)")
             elif resp.status == 429:
-                print(f"🚫 {api['name']} -> RATE LIMIT")
+                print(f"🚫 {api['name']} -> RATE LIMIT (429)")
+            elif resp.status == 403:
+                print(f"🛡️ {api['name']} -> BLOCKED (403)")
             else:
-                # print(f"❌ {api['name']} -> {resp.status}") # Optional noise
-                pass
+                print(f"❌ {api['name']} -> ERROR {resp.status}")
+                # print(f"   Debug: {text[:50]}") # Uncomment if needed
     except:
         pass
 
