@@ -20,4 +20,5 @@ termux-wake-lock
 # -OO: Remove docstrings
 # -u: Unbuffered output
 export PYTHONUNBUFFERED=1
-python -u main.py --lite
+# Run in Interactive CLI Mode (Ask for Number)
+python -u main.py --lite --cli
