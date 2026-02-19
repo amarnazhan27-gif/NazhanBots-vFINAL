@@ -62,6 +62,17 @@ def check_auth(message):
         if not CHAT_ID: return True 
         return False
     except: return False
+    
+    sender_id = str(message.chat.id)
+    if sender_id == str(CHAT_ID): 
+        return True
+    else:
+        # Debug Log
+        if not hasattr(check_auth, "last_warn") or time.time() - check_auth.last_warn > 5:
+            print(f"⚠️ [TELEGRAM] Unauthorized Access from ID: {sender_id}")
+            check_auth.last_warn = time.time()
+        return False
+
 
 if TOKEN == "DUMMY_TOKEN" or ":" not in TOKEN:
     print("⚠️ Warning: Invalid Remote Token. Remote Admin Disabled.")
