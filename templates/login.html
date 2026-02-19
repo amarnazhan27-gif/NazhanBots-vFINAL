@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN :: NAZHANBOTS</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-box {
+            border: 1px solid #0f0;
+            padding: 20px;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        input {
+            background: #111;
+            border: 1px solid #0f0;
+            color: #0f0;
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        button {
+            background: #0f0;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <h2 style="text-align: center;">SYSTEM ACCESS</h2>
+        <form method="POST" action="/login">
+            <input type="password" name="password" placeholder="ENTER ACCESS CODE" required>
+            <button type="submit">AUTHENTICATE</button>
+        </form>
+    </div>
+</body>
+
+</html>

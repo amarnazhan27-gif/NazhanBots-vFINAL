@@ -1,0 +1,15 @@
+requests
+aiohttp
+requests
+pyTelegramBotAPI
+rich
+discord.py
+beautifulsoup4
+psutil
+cryptography
+setproctitle
+colorama
+psutil
+rich
+beautifulsoup4
+discord.py

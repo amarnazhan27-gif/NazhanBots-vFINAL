@@ -1,0 +1,59 @@
+[
+  {
+    "name": "DANA-Wallet",
+    "url": "https://m.dana.id/d/api/login/sendOtp",
+    "method": "POST",
+    "provider": "all",
+    "data": {
+      "mobile": "{phone}",
+      "action": "login"
+    }
+  },
+  {
+    "name": "OVO-V1",
+    "url": "https://api.ovo.id/v1.0/api/auth/customer/login2FA",
+    "method": "POST",
+    "provider": "telkomsel",
+    "data": {
+      "mobile": "{phone}",
+      "action": "login"
+    }
+  },
+  {
+    "name": "DANA-Wallet",
+    "url": "https://m.dana.id/d/api/login/sendOtp",
+    "method": "POST",
+    "provider": "all",
+    "data": {
+      "mobile": "{phone}",
+      "action": "login"
+    }
+  },
+  {
+    "name": "Traveloka-X",
+    "url": "https://m.traveloka.com/api/v1/user/send_otp",
+    "method": "POST",
+    "provider": "all",
+    "data": {
+      "phone_number": "{phone}"
+    }
+  },
+  {
+    "name": "RedDoorz-API",
+    "url": "https://api.reddoorz.com/user/otp",
+    "method": "POST",
+    "provider": "all",
+    "data": {
+      "phone_number": "{phone}"
+    }
+  },
+  {
+    "name": "Alodokter",
+    "url": "https://www.alodokter.com/api/auth/otp",
+    "method": "POST",
+    "provider": "all",
+    "data": {
+      "user_phone": "{phone}"
+    }
+  }
+]
