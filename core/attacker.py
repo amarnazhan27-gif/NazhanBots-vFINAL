@@ -81,6 +81,13 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
         from .proxy_scraper import scrape_proxies
         from .proxy_validator import filter_proxies
         raw_proxies = scrape_proxies() or []
+        
+        # v1000000: SPEED OPTIMIZATION (Only validate a random subset)
+        # Instead of validating 3000+ (taking 10 mins), we pick 200 random ones.
+        if len(raw_proxies) > 200:
+            random.shuffle(raw_proxies)
+            raw_proxies = raw_proxies[:200]
+            
         high_quality_proxies = await filter_proxies(raw_proxies)
         
         if not high_quality_proxies:
