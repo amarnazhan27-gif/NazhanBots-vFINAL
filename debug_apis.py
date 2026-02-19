@@ -5,7 +5,14 @@ import time
 
 # Load APIs
 try:
-    with open('termux_version/config/apis.json', 'r') as f:
+    # Try multiple paths to be safe
+    override_path = os.path.join(os.path.dirname(__file__), 'config/apis.json')
+    if os.path.exists(override_path):
+        path = override_path
+    else:
+        path = 'config/apis.json'
+        
+    with open(path, 'r') as f:
         apis = json.load(f)
 except:
     print("❌ Cannot load apis.json")
