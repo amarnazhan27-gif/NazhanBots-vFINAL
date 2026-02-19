@@ -8,23 +8,11 @@ import asyncio
 
 def get_chaos_delay(base_delay):
     """
-    Returns a deeper, more human-like delay.
-    Sometimes humans get distracted (long pause).
-    Sometimes humans act fast (short pause).
+    Returns a fast, aggressive delay.
+    No more distractions. Pure speed.
     """
-    chance = random.random()
-    
-    # 5% chance of "distraction" (user checks notification)
-    if chance < 0.05:
-        print("🧘 [CHAOS] User distracted... pausing.")
-        return base_delay + random.uniform(5.0, 12.0)
-        
-    # 10% chance of "rage mode" (fast clicks)
-    if chance < 0.15:
-        return base_delay * 0.1
-        
-    # Normal variance
-    return base_delay * random.uniform(0.8, 1.5)
+    # v1000000: AGGRESSIVE MODE
+    return base_delay * 0.1 # Reduced by 90%
 
 def inject_typo(text):
     """
