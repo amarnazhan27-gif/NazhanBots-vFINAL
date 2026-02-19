@@ -224,6 +224,10 @@ if __name__ == "__main__":
     else:
         # Masquerade in logs
         pass
+    
+    # v1.0: EXECUTE MAIN LOGIC
+    main()
+
     # 9. Scheduler
     try:
         from core.scheduler import start_scheduler

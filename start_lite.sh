@@ -11,5 +11,6 @@ termux-wake-lock
 # 2. Run with --lite and Python Optimization
 # -O: Remove assert
 # -OO: Remove docstrings
-export PYTHONOPTIMIZE=2
-python main.py --lite
+# -u: Unbuffered output
+export PYTHONUNBUFFERED=1
+python -u main.py --lite
