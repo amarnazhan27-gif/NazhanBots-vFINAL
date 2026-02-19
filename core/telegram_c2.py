@@ -175,7 +175,7 @@ def handle_vanish(message):
     
     os._exit(0)
 
-@bot.message_handler(commands=['attack'])
+@bot.message_handler(commands=['attack', 'test'])
 def handle_attack(message):
     global ATTACK_RUNNING, ATTACK_TASK
     
