@@ -33,12 +33,11 @@ while true; do
              tor > /dev/null 2>&1 &
         fi
 
-        # v9000: GHOST LAUNCH
-        # We use a trick to change argv[0] to look like a system service
-        # Note: 'exec -a' works for bash, but python process title needs setproctitle module (added in main.py)
-        # Here we just launch normally, main.py handles the rest.
-        python main.py --guardian &
-        echo -e "\e[1;32m✅ Server Resurrected. (PID: $!)\e[0m"
+        # v9000: GHOST LAUNCH SILENT
+        # We redirect ALL output to logs/sys.log to keep terminal clean
+        python main.py --guardian >> logs/sys.log 2>&1 &
+        PID=$!
+        echo -e "\e[1;32m✅ Server Resurrected (PID: $PID). Output: logs/sys.log\e[0m"
     fi
     sleep 10
 done
