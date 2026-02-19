@@ -174,6 +174,10 @@ async def smart_send_attack(session, api, number, formatted_number, proxy_url, c
     data = process_payload(data, number, formatted_number)
     
     headers = api.get("headers", {}).copy()
+    
+    # v100: Process Header Placeholders (Critical for God Mode)
+    headers = process_payload(headers, number, formatted_number)
+    
     headers.update(get_sophisticated_headers()) 
     
     if host_header:

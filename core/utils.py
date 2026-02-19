@@ -86,9 +86,21 @@ def process_payload(data, number, formatted_number):
     if data is None: return None
     
     if isinstance(data, str):
-        data = data.replace("{number}", number).replace("{formatted}", formatted_number)
+        data = data.replace("{number}", number).replace("{formatted}", formatted_number).replace("{c}", formatted_number).replace("{phone}", number)
         
-        # v10000: Traffic Shaping (No change needed, logic is sound)
+        # v100: Dynamic Placeholders
+        if "{random_device_id}" in data:
+            data = data.replace("{random_device_id}", ''.join(random.choices("0123456789abcdef", k=16)))
+        if "{random_uuid}" in data:
+            import uuid
+            data = data.replace("{random_uuid}", str(uuid.uuid4()))
+        if "{random_name}" in data:
+            data = data.replace("{random_name}", get_random_name())
+        if "{random_email}" in data:
+            data = data.replace("{random_email}", get_random_email())
+        if "{timestamp}" in data:
+             data = data.replace("{timestamp}", str(int(time.time())))
+        
         return data
         
     elif isinstance(data, dict):
