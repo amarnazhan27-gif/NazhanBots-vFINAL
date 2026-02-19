@@ -22,9 +22,12 @@ def get_battery_status():
     if not hasattr(psutil, "sensors_battery"):
         return 100, False 
         
-    battery = psutil.sensors_battery()
-    if battery:
-        return battery.percent, battery.power_plugged
+    try:
+        battery = psutil.sensors_battery()
+        if battery:
+            return battery.percent, battery.power_plugged
+    except Exception:
+        pass # Permission denied on some Android devices
     return 100, True
 
 def is_safe_to_attack():
