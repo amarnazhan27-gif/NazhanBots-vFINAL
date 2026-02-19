@@ -18,67 +18,85 @@ except:
     print("❌ Cannot load apis.json")
     exit()
 
-target = input("Enter target number (e.g. 0812xxxx): ")
+# Helper: Clear Screen
+os.system('cls' if os.name == 'nt' else 'clear')
+
+print(f"🕵️  NAZHAN BOTS: API DIAGNOSTIC TOOL")
+print(f"=========================================")
+
+target = input("👉 Enter target number (e.g. 0812xxxx): ")
 if target.startswith("0"): formatted = "62" + target[1:]
 else: formatted = target
 
-print(f"🕵️ DEBUGGING {len(apis)} APIs on {target}...")
+print(f"\n🚀 Scanning {len(apis)} APIs... Please wait.")
+print(f"📄 Detailed logs will be saved to: debug_report.txt")
+print(f"=========================================\n")
 
+results = []
 headers_base = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "Content-Type": "application/json",
     "Accept": "application/json"
 }
 
-for api in apis:
-    name = api['name']
-    url = api['url']
-    method = api.get('method', 'POST')
-    data_template = api.get('data')
-    
-    # Process Data
-    if isinstance(data_template, dict):
-        data = json.dumps(data_template).replace("{phone}", target).replace("{formatted}", formatted)
-        # Convert back to dict for requests
-        json_data = json.loads(data)
-        data_arg = None
-    else:
-        # Form data?
-        data = str(data_template).replace("{phone}", target).replace("{formatted}", formatted)
-        json_data = None
-        data_arg = data
+with open("debug_report.txt", "w") as log_file:
+    log_file.write(f"DIAGNOSTIC REPORT - {time.ctime()}\nTARGET: {target}\n\n")
 
-    print(f"\n👉 Testing {name} [{method}]...")
-    print(f"   URL: {url}")
-    
-    try:
-        start = time.time()
-        if method == "POST":
-            if json_data:
-                response = requests.post(url, json=json_data, headers=headers_base, timeout=10)
-            else:
-                response = requests.post(url, data=data_arg, headers=headers_base, timeout=10)
-        else:
-            response = requests.get(url, headers=headers_base, timeout=10)
-            
-        latency = round(time.time() - start, 2)
+    for api in apis:
+        name = api['name']
+        url = api['url']
+        method = api.get('method', 'POST')
+        data_template = api.get('data')
         
-        status = response.status_code
+        # Process Data
+        if isinstance(data_template, dict):
+            data = json.dumps(data_template).replace("{phone}", target).replace("{formatted}", formatted)
+            json_data = json.loads(data)
+            data_arg = None
+        else:
+            data = str(data_template).replace("{phone}", target).replace("{formatted}", formatted)
+            json_data = None
+            data_arg = data
+
         try:
-            resp_json = response.json()
-            # print(f"   Response JSON: {str(resp_json)[:100]}...") 
-            msg = str(resp_json)[:50]
-        except:
-            msg = response.text[:50]
+            start = time.time()
+            if method == "POST":
+                if json_data:
+                    response = requests.post(url, json=json_data, headers=headers_base, timeout=10)
+                else:
+                    response = requests.post(url, data=data_arg, headers=headers_base, timeout=10)
+            else:
+                response = requests.get(url, headers=headers_base, timeout=10)
+                
+            latency = round(time.time() - start, 2)
+            status = response.status_code
             
-        print(f"   [{status}] {msg} ({latency}s)")
-        
-        if status == 200:
-            print("   ✅ SUCCESS (Potentially)")
-        elif status == 429:
-            print("   ⚠️ RATELIMITED")
-        else:
-            print("   ❌ FAILED")
+            # Outcome
+            if status == 200:
+                icon = "✅"
+                color_code = "\033[92m" # Green
+            elif status == 429:
+                icon = "⚠️"
+                color_code = "\033[93m" # Yellow
+            else:
+                icon = "❌"
+                color_code = "\033[91m" # Red
+                
+            reset_code = "\033[0m"
             
-    except Exception as e:
-        print(f"   ❌ ERROR: {e}")
+            # Print Short to Terminal
+            print(f"{icon} {name:<20} [{status}] {latency}s")
+            
+            # Log Full to File
+            try: resp_trunc = response.text[:200].replace("\n", " ") 
+            except: resp_trunc = "Binary/Error"
+            
+            log_entry = f"[{icon} {status}] {name}\nURL: {url}\nResp: {resp_trunc}\n{'-'*30}\n"
+            log_file.write(log_entry)
+            
+        except Exception as e:
+            print(f"❌ {name:<20} [ERROR]")
+            log_file.write(f"[ERROR] {name}: {str(e)}\n{'-'*30}\n")
+            
+print(f"\n=========================================")
+print(f"✅ SCAN COMPLETE. Check 'debug_report.txt' for details.")
