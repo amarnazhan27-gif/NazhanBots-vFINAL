@@ -51,6 +51,7 @@ def main():
     parser.add_argument("--guardian", action="store_true", help="Start Guardian Mode")
     parser.add_argument("--tor", action="store_true", help="Route traffic via Tor Network")
     parser.add_argument("--lite", action="store_true", help="Run in Lightweight Mode (No UI/Voice/Discord) for Max Speed")
+    parser.add_argument("--cli", action="store_true", help="Interactive CLI Mode")
     args = parser.parse_args()
 
     # vOptimization: Lite Mode Global Setting
