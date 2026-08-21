@@ -3,9 +3,11 @@ from __future__ import annotations
 from contextlib import redirect_stdout
 import io
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import telegram_relay
 
 
