@@ -1,0 +1,50 @@
+name: quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Audit EA safety controls
+        run: ./scripts/audit-ea.sh
+
+      - name: Audit read-only preflight
+        run: ./scripts/audit-preflight.sh
+
+      - name: Verify recorded checksums
+        run: |
+          sha256sum -c checksums/ea.sha256
+          sha256sum -c checksums/preflight.sha256
+
+      - name: Test Telegram relay
+        run: python -m unittest -v tests/test_telegram_relay.py
+
+      - name: Validate evidence and SVG files
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from xml.etree import ElementTree
+
+          for item in Path("evidence").rglob("*.json"):
+              with item.open(encoding="utf-8") as source:
+                  json.load(source)
+
+          for item in Path("assets").glob("*.svg"):
+              ElementTree.parse(item)
+          PY
