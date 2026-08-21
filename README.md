@@ -102,6 +102,7 @@ are separate gates. A passing command above does not establish profitability.
 | Path | Contents |
 | --- | --- |
 | `src/` | EA, read-only preflight probe, and compiled builds |
+| `assets/` | Project logo and repository header |
 | `profiles/` | Default, HFM, and MetaQuotes tester profiles |
 | `docs/` | Strategy, research, setup, and validation notes |
 | `evidence/` | Build logs and machine-readable test records |

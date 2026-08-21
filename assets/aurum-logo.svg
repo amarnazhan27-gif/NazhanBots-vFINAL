@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">AURUM pixel logo</title>
+  <desc id="desc">Gold eight-bit letter A on a charcoal background</desc>
+  <defs>
+    <g id="pixel-a">
+      <rect x="48" y="0" width="72" height="24"/>
+      <rect x="24" y="24" width="24" height="24"/>
+      <rect x="120" y="24" width="24" height="24"/>
+      <rect x="0" y="48" width="24" height="120"/>
+      <rect x="144" y="48" width="24" height="120"/>
+      <rect x="24" y="96" width="120" height="24"/>
+    </g>
+  </defs>
+  <g shape-rendering="crispEdges">
+    <rect width="256" height="256" fill="#080a0e"/>
+    <rect x="8" y="8" width="240" height="240" fill="#10141a" stroke="#6f5421" stroke-width="8"/>
+    <g transform="translate(44 44)">
+      <use href="#pixel-a" x="8" y="8" fill="#614817"/>
+      <use href="#pixel-a" fill="#d9ad4a"/>
+      <rect x="24" y="96" width="120" height="8" fill="#f2d47f"/>
+    </g>
+    <rect x="24" y="24" width="12" height="12" fill="#d9ad4a"/>
+    <rect x="220" y="24" width="12" height="12" fill="#d9ad4a"/>
+    <rect x="24" y="220" width="12" height="12" fill="#d9ad4a"/>
+    <rect x="220" y="220" width="12" height="12" fill="#d9ad4a"/>
+  </g>
+</svg>

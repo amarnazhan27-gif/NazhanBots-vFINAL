@@ -1,35 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
   <title id="title">AURUM</title>
-  <desc id="desc">Adaptive XAUUSD research for MetaTrader 5</desc>
+  <desc id="desc">Eight-bit AURUM banner for adaptive XAUUSD research on MetaTrader 5</desc>
   <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0a0c10"/>
-      <stop offset="1" stop-color="#171b22"/>
-    </linearGradient>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#a7771f"/>
-      <stop offset="0.5" stop-color="#e0bd63"/>
-      <stop offset="1" stop-color="#b5842a"/>
-    </linearGradient>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#ffffff" stroke-opacity="0.035"/>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#87909d" stroke-opacity="0.055" stroke-width="2"/>
     </pattern>
+    <g id="pixel-a">
+      <rect x="36" y="0" width="54" height="18"/>
+      <rect x="18" y="18" width="18" height="18"/>
+      <rect x="90" y="18" width="18" height="18"/>
+      <rect x="0" y="36" width="18" height="90"/>
+      <rect x="108" y="36" width="18" height="90"/>
+      <rect x="18" y="72" width="90" height="18"/>
+    </g>
   </defs>
 
-  <rect width="1200" height="300" rx="18" fill="url(#background)"/>
-  <rect width="1200" height="300" rx="18" fill="url(#grid)"/>
-  <path d="M0 238 C180 220 260 252 440 225 S760 188 920 210 1090 195 1200 166"
-        fill="none" stroke="#c99a3d" stroke-opacity="0.22" stroke-width="2"/>
+  <g shape-rendering="crispEdges">
+    <rect width="1200" height="320" fill="#080a0e"/>
+    <rect x="8" y="8" width="1184" height="304" fill="#10141a" stroke="#6f5421" stroke-width="8"/>
+    <rect x="20" y="20" width="1160" height="280" fill="url(#grid)"/>
 
-  <g transform="translate(82 67)">
-    <path d="M72 0 0 154h30l17-38h66l17 38h30L88 0Zm-13 89 21-47 21 47Z" fill="url(#gold)"/>
-    <rect x="48" y="103" width="64" height="7" rx="3.5" fill="#e0bd63" opacity="0.82"/>
+    <rect x="34" y="34" width="12" height="12" fill="#d9ad4a"/>
+    <rect x="1154" y="34" width="12" height="12" fill="#d9ad4a"/>
+    <rect x="34" y="274" width="12" height="12" fill="#d9ad4a"/>
+    <rect x="1154" y="274" width="12" height="12" fill="#d9ad4a"/>
+
+    <g transform="translate(76 84)">
+      <use href="#pixel-a" x="7" y="7" fill="#614817"/>
+      <use href="#pixel-a" fill="#d9ad4a"/>
+      <rect x="18" y="72" width="90" height="6" fill="#f2d47f"/>
+    </g>
+
+    <rect x="249" y="64" width="8" height="192" fill="#6f5421"/>
+
+    <text x="306" y="148" fill="#f3f0e8" font-family="Menlo, Consolas, 'Courier New', monospace"
+          font-size="82" font-weight="700" letter-spacing="10">AURUM</text>
+    <text x="310" y="198" fill="#d9ad4a" font-family="Menlo, Consolas, 'Courier New', monospace"
+          font-size="20" font-weight="700" letter-spacing="3">XAUUSD RESEARCH SYSTEM</text>
+
+    <rect x="310" y="224" width="386" height="34" fill="#171d25" stroke="#4d5664" stroke-width="4"/>
+    <text x="326" y="247" fill="#aeb6c2" font-family="Menlo, Consolas, 'Courier New', monospace"
+          font-size="15" font-weight="700" letter-spacing="1.6">MT5  /  M1 ENTRY  /  RESEARCH BUILD</text>
+
+    <g transform="translate(948 72)">
+      <rect x="0" y="62" width="8" height="70" fill="#707987"/>
+      <rect x="-8" y="82" width="24" height="30" fill="#707987"/>
+      <rect x="48" y="28" width="8" height="108" fill="#d9ad4a"/>
+      <rect x="40" y="52" width="24" height="48" fill="#d9ad4a"/>
+      <rect x="96" y="50" width="8" height="94" fill="#707987"/>
+      <rect x="88" y="76" width="24" height="42" fill="#707987"/>
+      <rect x="144" y="8" width="8" height="116" fill="#d9ad4a"/>
+      <rect x="136" y="34" width="24" height="54" fill="#d9ad4a"/>
+      <path d="M-4 154H172" stroke="#4d5664" stroke-width="4"/>
+      <rect x="164" y="146" width="12" height="12" fill="#d9ad4a"/>
+    </g>
   </g>
-
-  <rect x="285" y="62" width="2" height="176" fill="#c99a3d" opacity="0.38"/>
-  <text x="337" y="153" fill="#f5f2ea" font-family="Inter, Helvetica, Arial, sans-serif"
-        font-size="82" font-weight="700" letter-spacing="16">AURUM</text>
-  <text x="342" y="202" fill="#b8bec9" font-family="Inter, Helvetica, Arial, sans-serif"
-        font-size="22" font-weight="400" letter-spacing="2.4">ADAPTIVE XAUUSD RESEARCH · METATRADER 5</text>
-  <rect x="342" y="224" width="172" height="3" rx="1.5" fill="url(#gold)"/>
 </svg>
