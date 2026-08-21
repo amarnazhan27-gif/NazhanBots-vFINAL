@@ -6,8 +6,8 @@ This is not a live-trading release and it does not promise returns.
 
 ## Before proposing a change
 
-- Read `STRATEGY_SPECIFICATION.md`, `VALIDATION.md`, and
-  `CAPITAL_FEASIBILITY.md`.
+- Read `docs/strategy.md`, `docs/validation.md`, and
+  `docs/capital.md`.
 - Keep the existing safety boundary intact: no martingale, grid, averaging,
   recovery sizing, or minimum-lot override.
 - Do not change `BUILD_ALLOW_REAL_ACCOUNT` or the default real-account switches.
@@ -17,8 +17,8 @@ This is not a live-trading release and it does not promise returns.
 ## Development and validation
 
 1. Keep the change focused and state the hypothesis it tests.
-2. Run `./static_audit.sh`.
-3. For changes to the preflight probe, also run `./preflight_static_audit.sh`.
+2. Run `./scripts/audit-ea.sh`.
+3. For changes to the preflight probe, also run `./scripts/audit-preflight.sh`.
 4. Run `python3 -m unittest -v tests/test_telegram_relay.py` after relay changes.
 5. Recompile in MetaEditor and record the compiler result for MQL5 changes.
    A clean compile is not performance evidence.

@@ -19,12 +19,12 @@ the risk limit.
 
 | File | Purpose |
 | --- | --- |
-| `AurumCent.mq5` | Main M1 research EA. |
-| `HfmPreflight.mq5` | Read-only check for HFM broker conditions and minimum-lot risk. |
-| `AurumCent.set` | Default parameter set. |
+| `src/AurumCent.mq5` | Main M1 research EA. |
+| `src/HfmPreflight.mq5` | Read-only check for HFM broker conditions and minimum-lot risk. |
+| `profiles/AurumCent.set` | Default parameter set. |
 
-Before an HFM test, run `HfmPreflight.ex5`. It cannot place, modify, or close a
-trade. Setup details are in `HFM_PREFLIGHT_INSTRUCTIONS.md`.
+Before an HFM test, run `src/HfmPreflight.ex5`. It cannot place, modify, or close a
+trade. Setup details are in `docs/preflight.md`.
 
 ## Working rules
 
@@ -37,12 +37,12 @@ trade. Setup details are in `HFM_PREFLIGHT_INSTRUCTIONS.md`.
 - News protection uses the MT5 economic calendar and fails closed outside the
   tester when data is unavailable.
 - Notifications are written to a Common Files outbox. Credentials are never
-  stored in the EA; see `TELEGRAM_SETUP.md`.
+  stored in the EA; see `docs/telegram.md`.
 
 ## Validate a change
 
-1. Run `./static_audit.sh`.
-2. Run `./preflight_static_audit.sh` when changing the preflight script.
+1. Run `./scripts/audit-ea.sh`.
+2. Run `./scripts/audit-preflight.sh` when changing the preflight script.
 3. Compile in MetaEditor and record the actual result.
 4. Run M1 tests with real ticks and execution delay where the data is available.
 5. Keep static checks, compile results, tester runs, and forward-demo evidence
@@ -59,15 +59,23 @@ The broader record is less favorable. The untouched 2015-2021 period and the
 and an extra 1.00 cost per trade removed the profit. The HFM 2026 sample is also
 too small. For that reason, the status remains `NOT READY FOR REAL`.
 
-Read `RESEARCH_RESULTS.md`, `VALIDATION.md`, `CAPITAL_FEASIBILITY.md`, and
-`REAL_TICK_EVIDENCE.json` for the numbers, assumptions, and remaining gates.
+Read `docs/research.md`, `docs/validation.md`, `docs/capital.md`, and
+`evidence/real-ticks.json` for the numbers, assumptions, and remaining gates.
 
-## Repository notes
+## Repository layout
 
-The root files use short names for day-to-day work. Longer `AURUM_*` profile and
-evidence filenames are retained where they identify a specific historical test.
-Historical compile logs also keep their original paths so their evidence remains
-traceable.
+| Folder | Contents |
+| --- | --- |
+| `src/` | EA, preflight source, and compiled builds. |
+| `profiles/` | Default, HFM, and MetaQuotes tester profiles. |
+| `docs/` | Strategy, setup, research, and validation notes. |
+| `evidence/` | Build logs and recorded test evidence. |
+| `scripts/` | Audits, relay, and research utilities. |
+| `checksums/` | Source and binary integrity records. |
+
+Profile names stay short because the broker or environment is already identified
+by its folder. Build logs preserve original compiler paths inside the file so the
+record remains traceable.
 
 Contributions should improve safety, reproducibility, or evidence quality. A
 better in-sample curve alone is not enough to change the strategy. See
