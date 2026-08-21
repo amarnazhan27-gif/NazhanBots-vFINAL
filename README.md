@@ -6,6 +6,7 @@
   <img src="https://img.shields.io/badge/Platform-MetaTrader_5-1f2937?style=flat-square" alt="MetaTrader 5">
   <img src="https://img.shields.io/badge/Language-MQL5-c89b3c?style=flat-square" alt="MQL5">
   <img src="https://img.shields.io/badge/Status-Research_Only-8b2f2f?style=flat-square" alt="Research only">
+  <img src="https://github.com/amarnazhan27-gif/AURUM/actions/workflows/quality.yml/badge.svg" alt="Quality checks">
 </p>
 
 <p align="center">
@@ -14,6 +15,7 @@
   <a href="#research-snapshot">Research</a> ·
   <a href="#mt5-setup">MT5 setup</a> ·
   <a href="#repository-map">Repository</a> ·
+  <a href="ROADMAP.md">Roadmap</a> ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
@@ -26,6 +28,9 @@ at any point.
 
 This repository is a demo-validation build. Real-account support is disabled at
 compile time. It is not a signal service, a profit guarantee, or a live release.
+
+[Download the v1.34 demo package](https://github.com/amarnazhan27-gif/AURUM/releases/tag/v1.34-demo)
+or review the source and checksums directly in this repository.
 
 | Property | Current profile |
 | --- | --- |
@@ -72,6 +77,10 @@ Detailed methodology, yearly results, and rejected variants are documented in
 [Research](docs/research.md), [Validation](docs/validation.md), and
 [Capital feasibility](docs/capital.md).
 
+<p align="center">
+  <img src="assets/research-summary.svg" alt="AURUM recorded research summary" width="100%">
+</p>
+
 ## MT5 setup
 
 1. Copy `src/AurumCent.ex5` to `MQL5/Experts/AurumCent/`.
@@ -104,11 +113,12 @@ are separate gates. A passing command above does not establish profitability.
 | `src/` | EA, read-only preflight probe, and compiled builds |
 | `assets/` | Project logo and repository header |
 | `profiles/` | Default, HFM, and MetaQuotes tester profiles |
-| `docs/` | Strategy, research, setup, and validation notes |
+| `docs/` | Documentation index, strategy, research, setup, and validation notes |
 | `evidence/` | Build logs and machine-readable test records |
 | `scripts/` | Static audits, Telegram relay, and research utilities |
 | `checksums/` | Source and binary integrity manifests |
 | `tests/` | Relay regression test and fixture |
+| `.github/` | Automated quality checks and structured issue forms |
 
 ## Notifications
 
@@ -120,3 +130,7 @@ trading path. See the [notification guide](docs/telegram.md).
 
 Released under the [MIT License](LICENSE). Trading and investment risk remain
 the responsibility of the operator; the software is provided without warranty.
+
+Release history is available in the [changelog](CHANGELOG.md). Remaining
+evidence gates and deliberately excluded features are listed in the
+[roadmap](ROADMAP.md).

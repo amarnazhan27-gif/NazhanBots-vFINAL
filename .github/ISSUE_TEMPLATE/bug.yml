@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a reproducible problem in the EA, preflight probe, or tooling.
+title: "bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Remove account identifiers and credentials before submitting logs.
+  - type: input
+    id: build
+    attributes:
+      label: MT5 and AURUM build
+      placeholder: "MT5 build 6063, AURUM v1.34"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "Broker, symbol, timeframe, demo/tester"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest sequence that reproduces the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized journal excerpt
+      render: text
