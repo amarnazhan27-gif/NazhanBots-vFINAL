@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read the validation record
+    url: https://github.com/amarnazhan27-gif/AURUM/blob/main/docs/validation.md
+    about: Check known limitations and open readiness gates before filing an issue.

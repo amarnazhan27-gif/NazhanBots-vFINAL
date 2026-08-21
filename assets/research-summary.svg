@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">AURUM research summary</title>
+  <desc id="desc">Recorded yearly real-tick net results, friction stress, and capital feasibility</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#87909d" stroke-opacity="0.05" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <g shape-rendering="crispEdges" font-family="Menlo, Consolas, 'Courier New', monospace">
+    <rect width="1200" height="680" fill="#080a0e"/>
+    <rect x="8" y="8" width="1184" height="664" fill="#10141a" stroke="#6f5421" stroke-width="8"/>
+    <rect x="20" y="20" width="1160" height="640" fill="url(#grid)"/>
+
+    <text x="48" y="62" fill="#f3f0e8" font-size="28" font-weight="700">RESEARCH / RECORDED EVIDENCE</text>
+    <text x="48" y="88" fill="#8f98a6" font-size="14">AGGREGATES ONLY · NO SYNTHETIC TRADE CURVE</text>
+
+    <rect x="40" y="112" width="700" height="374" fill="#0d1117" stroke="#38414d" stroke-width="4"/>
+    <text x="64" y="148" fill="#d9ad4a" font-size="18" font-weight="700">REAL-TICK NET BY YEAR / USD</text>
+    <line x1="72" y1="316" x2="708" y2="316" stroke="#697381" stroke-width="4"/>
+    <line x1="72" y1="170" x2="72" y2="430" stroke="#38414d" stroke-width="4"/>
+
+    <rect x="116" y="316" width="64" height="103" fill="#a14f4f"/>
+    <rect x="232" y="280" width="64" height="36" fill="#b58a32"/>
+    <rect x="348" y="159" width="64" height="157" fill="#d9ad4a"/>
+    <rect x="464" y="286" width="64" height="30" fill="#b58a32"/>
+    <rect x="580" y="248" width="64" height="68" fill="#c79a3b"/>
+
+    <text x="111" y="443" fill="#aeb6c2" font-size="14">2021</text>
+    <text x="227" y="443" fill="#aeb6c2" font-size="14">2022</text>
+    <text x="343" y="443" fill="#aeb6c2" font-size="14">2023</text>
+    <text x="459" y="443" fill="#aeb6c2" font-size="14">2024</text>
+    <text x="575" y="443" fill="#aeb6c2" font-size="14">2025</text>
+
+    <text x="116" y="302" fill="#d98a8a" font-size="13">-57.43</text>
+    <text x="234" y="268" fill="#d9ad4a" font-size="13">+20.21</text>
+    <text x="350" y="181" fill="#10141a" font-size="13" font-weight="700">+87.16</text>
+    <text x="466" y="274" fill="#d9ad4a" font-size="13">+16.64</text>
+    <text x="582" y="236" fill="#d9ad4a" font-size="13">+37.73</text>
+    <text x="64" y="470" fill="#747e8c" font-size="13">METAQUOTES XAUUSD · FIXED V1.34 PROFILE · 2021–2025</text>
+
+    <rect x="764" y="112" width="396" height="374" fill="#0d1117" stroke="#38414d" stroke-width="4"/>
+    <text x="788" y="148" fill="#d9ad4a" font-size="18" font-weight="700">FRICTION STRESS / USD</text>
+    <text x="788" y="176" fill="#747e8c" font-size="12">EXTRA COST PER TRADE</text>
+    <line x1="974" y1="192" x2="974" y2="446" stroke="#697381" stroke-width="4"/>
+
+    <text x="790" y="220" fill="#aeb6c2" font-size="13">0.00</text>
+    <rect x="974" y="202" width="130" height="20" fill="#d9ad4a"/>
+    <text x="1090" y="218" fill="#f3f0e8" font-size="12">+104</text>
+
+    <text x="790" y="270" fill="#aeb6c2" font-size="13">0.50</text>
+    <rect x="974" y="252" width="63" height="20" fill="#b58a32"/>
+    <text x="1043" y="268" fill="#f3f0e8" font-size="12">+50</text>
+
+    <text x="790" y="320" fill="#aeb6c2" font-size="13">1.00</text>
+    <rect x="969" y="302" width="5" height="20" fill="#a14f4f"/>
+    <text x="902" y="318" fill="#d98a8a" font-size="12">-3.69</text>
+
+    <text x="790" y="370" fill="#aeb6c2" font-size="13">1.50</text>
+    <rect x="902" y="352" width="72" height="20" fill="#a14f4f"/>
+    <text x="838" y="368" fill="#d98a8a" font-size="12">-57.69</text>
+
+    <text x="790" y="420" fill="#aeb6c2" font-size="13">2.00</text>
+    <rect x="834" y="402" width="140" height="20" fill="#873f3f"/>
+    <text x="790" y="438" fill="#d98a8a" font-size="12">-111.69</text>
+    <text x="788" y="470" fill="#747e8c" font-size="12">1.00 EXTRA COST ERASES THE RESULT</text>
+
+    <rect x="40" y="510" width="1120" height="126" fill="#0d1117" stroke="#38414d" stroke-width="4"/>
+    <text x="64" y="546" fill="#747e8c" font-size="12">REAL TICKS</text>
+    <text x="64" y="578" fill="#f3f0e8" font-size="22" font-weight="700">166,579,525</text>
+    <text x="302" y="546" fill="#747e8c" font-size="12">TRADES</text>
+    <text x="302" y="578" fill="#f3f0e8" font-size="22" font-weight="700">108</text>
+    <text x="438" y="546" fill="#747e8c" font-size="12">PROFIT FACTOR</text>
+    <text x="438" y="578" fill="#f3f0e8" font-size="22" font-weight="700">1.202</text>
+    <text x="640" y="546" fill="#747e8c" font-size="12">525 USC CAPITAL CHECK</text>
+    <text x="640" y="578" fill="#d9ad4a" font-size="22" font-weight="700">11 / 11 SKIPPED</text>
+    <text x="910" y="546" fill="#747e8c" font-size="12">LIVE STATUS</text>
+    <rect x="910" y="560" width="218" height="36" fill="#3b2020" stroke="#a14f4f" stroke-width="4"/>
+    <text x="929" y="584" fill="#e1a0a0" font-size="15" font-weight="700">NOT READY FOR REAL</text>
+    <text x="64" y="615" fill="#747e8c" font-size="11">SOURCE: evidence/real-ticks.json + evidence/hfm/capital-525.json</text>
+  </g>
+</svg>

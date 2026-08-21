@@ -1,0 +1,35 @@
+name: Strategy proposal
+description: Propose a testable strategy change without weakening safety controls.
+title: "research: "
+labels: [research]
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Falsifiable hypothesis
+      description: Explain why the change should work and what result would reject it.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      description: Identify the rule, parameter, or data dependency involved.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: Define in-sample, out-of-sample, friction, and forward-demo checks.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Safety boundaries
+      options:
+        - label: No martingale, grid, averaging, recovery sizing, or minimum-lot override.
+          required: true
+        - label: Real-account support remains disabled.
+          required: true

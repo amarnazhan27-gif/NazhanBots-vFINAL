@@ -1,0 +1,47 @@
+name: Backtest result
+description: Submit a reproducible Strategy Tester result for review.
+title: "test: "
+labels: [research]
+body:
+  - type: input
+    id: environment
+    attributes:
+      label: Broker, server, and symbol
+      placeholder: "HFM demo, server name removed, XAUUSDc"
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Tester model and execution mode
+      placeholder: "Every tick based on real ticks, random delay"
+    validations:
+      required: true
+  - type: input
+    id: period
+    attributes:
+      label: Date range and timeframe
+      placeholder: "2025-01-01 to 2025-12-31, M1"
+    validations:
+      required: true
+  - type: textarea
+    id: profile
+    attributes:
+      label: Profile and costs
+      description: Include preset name, deposit, currency, leverage, spread, commission, and swaps.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result
+      description: Include trades, net result, profit factor, and drawdown.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed account numbers, credentials, and personal data.
+          required: true
