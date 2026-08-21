@@ -69,7 +69,7 @@ match. The trade-capable real path was deliberately not exercised.
 
 ## Read-only HFM preflight probe
 
-`AURUM_HFM_CENT_PREFLIGHT.mq5` was added to close the broker-evidence gap once
+`HfmPreflight.mq5` was added to close the broker-evidence gap once
 an HFM terminal becomes available. Its static audit found no `OrderSend`, trade
 action, `CTrade`, buy/sell, close, modify, or delete transaction API. MetaEditor
 compiled it with `0 errors, 0 warnings`. It checks HFM identity, USC, `XAUUSDc`,

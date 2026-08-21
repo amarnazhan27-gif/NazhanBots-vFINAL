@@ -10,7 +10,7 @@ or close a trade.
 
 1. Log in to an HFM Cent demo account in MT5.
 2. Confirm `XAUUSDc` is visible in Market Watch.
-3. Copy `AURUM_HFM_CENT_PREFLIGHT.ex5` into `MQL5/Scripts`.
+3. Copy `HfmPreflight.ex5` into `MQL5/Scripts`.
 4. Refresh Navigator, then run it once on any chart.
 5. In the Experts log, locate lines beginning with `AURUM_PREFLIGHT|`.
 

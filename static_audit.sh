@@ -2,7 +2,7 @@
 set -eu
 
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-src="${1:-$script_dir/AURUM_CENT_ADAPTIVE_M1_DEMO.mq5}"
+src="${1:-$script_dir/AurumCent.mq5}"
 
 test -f "$src"
 grep -q 'BUILD_ALLOW_REAL_ACCOUNT = false' "$src"

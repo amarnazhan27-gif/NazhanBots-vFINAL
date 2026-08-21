@@ -2,7 +2,7 @@
 set -eu
 
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-src="${1:-$script_dir/AURUM_HFM_CENT_PREFLIGHT.mq5}"
+src="${1:-$script_dir/HfmPreflight.mq5}"
 
 test -f "$src"
 grep -q 'OrderCalcProfit' "$src"
