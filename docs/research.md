@@ -118,7 +118,7 @@ This is encouraging directional evidence, but seven trades over roughly two
 and a half months cannot establish profitability. It also does not apply to the
 user's corrected 525 USC capital, where every setup remains below minimum
 volume. Machine-readable evidence is in
-`HFM_TESTER_2026_RESEARCH_EVIDENCE.json`.
+`evidence/hfm/research-2026.json`.
 
 ## HFM XAUUSDc generated-tick research — 2023-2025
 
@@ -139,7 +139,7 @@ would be curve-fitting.
 
 This test extends broker-history coverage but is weaker than real-tick evidence.
 Its negative 2023 and 2024 results fail the stability gate. Machine-readable
-evidence is in `HFM_GENERATED_2023_2025_EVIDENCE.json`.
+evidence is in `evidence/hfm/generated-2023-2025.json`.
 
 ## External research boundary
 
