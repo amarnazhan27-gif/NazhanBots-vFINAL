@@ -166,8 +166,8 @@ robustness, HFM real-tick walk-forward, and forward-demo gates pass.
 - The tester reported mismatched/discarded real ticks for 544 of 72,611 minute
   bars (0.7492%) and used generated ticks for those affected minutes. This is
   recorded as a data-quality limitation, not hidden as pure real-tick coverage.
-- Evidence: `HFM_TESTER_525_USC_EVIDENCE.json` and
-  `HFM_TESTER_525_USC_LOG_SNAPSHOT.txt`.
+- Evidence: `evidence/hfm/capital-525.json` and
+  `evidence/hfm/capital-525.log`.
 
 ## HFM release-equivalent research
 

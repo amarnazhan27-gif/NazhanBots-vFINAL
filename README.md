@@ -1,82 +1,121 @@
-# AURUM
+<p align="center">
+  <img src="assets/aurum-header.svg" alt="AURUM — Adaptive XAUUSD research for MetaTrader 5" width="100%">
+</p>
 
-AURUM is an MT5 research EA for XAUUSD Cent. It combines higher-timeframe
-context with M1 closed-bar entries, then filters each setup by session, market
-regime, and risk conditions.
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-MetaTrader_5-1f2937?style=flat-square" alt="MetaTrader 5">
+  <img src="https://img.shields.io/badge/Language-MQL5-c89b3c?style=flat-square" alt="MQL5">
+  <img src="https://img.shields.io/badge/Status-Research_Only-8b2f2f?style=flat-square" alt="Research only">
+</p>
 
-## Current status
+<p align="center">
+  <a href="#overview">Overview</a> ·
+  <a href="#decision-flow">Decision flow</a> ·
+  <a href="#research-snapshot">Research</a> ·
+  <a href="#mt5-setup">MT5 setup</a> ·
+  <a href="#repository-map">Repository</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
 
-This is a demo and research build. It is not ready for real funds. The shipped
-build has real-account support disabled, and that lock stays in place until the
-capital, robustness, HFM real-tick, and forward-demo gates are met.
+## Overview
 
-The most important practical result is simple: with 525 USC, a 0.10% risk target
-does not meet HFM's 0.01-lot minimum for the observed Gold setups. The EA should
-skip those entries with `VOLUME_BELOW_MIN`; forcing the minimum lot would break
-the risk limit.
+AURUM is an adaptive XAUUSD Cent research EA for MetaTrader 5. H1 supplies
+direction, M15 classifies the regime, M5 confirms the setup, and M1 handles the
+closed-bar entry. Session, calendar, broker, and capital checks can veto a trade
+at any point.
 
-## Start here
+This repository is a demo-validation build. Real-account support is disabled at
+compile time. It is not a signal service, a profit guarantee, or a live release.
 
-| File | Purpose |
+| Property | Current profile |
 | --- | --- |
-| `src/AurumCent.mq5` | Main M1 research EA. |
-| `src/HfmPreflight.mq5` | Read-only check for HFM broker conditions and minimum-lot risk. |
-| `profiles/AurumCent.set` | Default parameter set. |
+| Instrument | HFM Gold Cent (`XAUUSDc`) |
+| Entry timeframe | M1, closed bars only |
+| Context | H1 direction · M15 regime · M5 setup |
+| Risk target | 0.10% of equity |
+| Frequency limit | One new position per broker day |
+| Default sessions | London BUY · New York SELL · Asia disabled |
+| Real-account support | Disabled |
 
-Before an HFM test, run `src/HfmPreflight.ex5`. It cannot place, modify, or close a
-trade. Setup details are in `docs/preflight.md`.
+> **Capital constraint:** at 525 USC, the observed Gold setups do not satisfy
+> HFM's 0.01-lot minimum at the 0.10% risk target. The expected action is
+> `VOLUME_BELOW_MIN`, not a forced minimum-volume trade.
 
-## Working rules
+## Decision flow
 
-- Use the broker's Gold symbol on M1.
-- Default risk is 0.10% equity, with at most one new position per broker day.
-- Asia is disabled by default. The release profile allows London BUY and New
-  York SELL when the M15 ADX filter is met.
-- Session times follow the broker server. Verify DST and server offset before
-  interpreting any session result.
-- News protection uses the MT5 economic calendar and fails closed outside the
-  tester when data is unavailable.
-- Notifications are written to a Common Files outbox. Credentials are never
-  stored in the EA; see `docs/telegram.md`.
+```mermaid
+flowchart LR
+    A[H1 direction] --> B[M15 regime]
+    B --> C[M5 setup]
+    C --> D[M1 closed-bar trigger]
+    D --> E{Safety gate}
+    F[Session and calendar] --> E
+    G[Broker and capital] --> E
+    E -->|Pass| H[Demo order with SL and TP]
+    E -->|Veto| I[No trade and journal reason]
+```
 
-## Validate a change
+Safety checks always take priority over the adaptive score. The strategy does
+not use martingale, grid, averaging, recovery sizing, or minimum-lot overrides.
 
-1. Run `./scripts/audit-ea.sh`.
-2. Run `./scripts/audit-preflight.sh` when changing the preflight script.
-3. Compile in MetaEditor and record the actual result.
-4. Run M1 tests with real ticks and execution delay where the data is available.
-5. Keep static checks, compile results, tester runs, and forward-demo evidence
-   separate. One does not substitute for another.
+## Research snapshot
 
-## Evidence, not a profit claim
+| Dataset | Trades | Profit factor | Net result | Main limitation |
+| --- | ---: | ---: | ---: | --- |
+| MetaQuotes generated ticks, 2022–2025 | 88 | 1.385 | +150.97 USD | Stand-in account and generated ticks |
+| MetaQuotes real ticks, 2021–2025 | 108 | 1.202 | +104.31 USD | Extra 1.00 cost per trade removes the profit |
+| HFM real ticks, available 2026 cache | 7 | 1.826 | +0.19% | Sample is too small |
+| HFM generated ticks, 2023–2025 | 10 | 1.262 | +0.11 USD | Negative in 2023 and 2024 |
 
-The 2022-2025 generated-tick stand-in regression was positive: 88 closed
-trades, 50% wins, PF 1.385, and +USD 150.97 from a USD 10,000 account. It is
-reproducibility evidence only, not HFM Cent performance evidence.
+The record is regime-dependent and fails the current live-readiness gates.
+Detailed methodology, yearly results, and rejected variants are documented in
+[Research](docs/research.md), [Validation](docs/validation.md), and
+[Capital feasibility](docs/capital.md).
 
-The broader record is less favorable. The untouched 2015-2021 period and the
-2021 real-tick run were negative. The combined 2021-2025 real-tick PF was 1.202,
-and an extra 1.00 cost per trade removed the profit. The HFM 2026 sample is also
-too small. For that reason, the status remains `NOT READY FOR REAL`.
+## MT5 setup
 
-Read `docs/research.md`, `docs/validation.md`, `docs/capital.md`, and
-`evidence/real-ticks.json` for the numbers, assumptions, and remaining gates.
+1. Copy `src/AurumCent.ex5` to `MQL5/Experts/AurumCent/`.
+2. Copy `src/HfmPreflight.ex5` to `MQL5/Scripts/`.
+3. Open an HFM Cent **demo** account and make `XAUUSDc` visible in Market Watch.
+4. Run `HfmPreflight` once and review every `AURUM_PREFLIGHT|...` result.
+5. Attach `AurumCent` to an `XAUUSDc` M1 chart and load
+   `profiles/AurumCent.set`.
 
-## Repository layout
+Read the [preflight guide](docs/preflight.md) before testing. Tester profiles
+for reproducible HFM and MetaQuotes runs are available under `profiles/`.
 
-| Folder | Contents |
+## Validation
+
+```sh
+./scripts/audit-ea.sh
+./scripts/audit-preflight.sh
+shasum -a 256 -c checksums/ea.sha256
+shasum -a 256 -c checksums/preflight.sha256
+python3 -m unittest -v tests/test_telegram_relay.py
+```
+
+Compilation, tester completion, forward-demo performance, and live readiness
+are separate gates. A passing command above does not establish profitability.
+
+## Repository map
+
+| Path | Contents |
 | --- | --- |
-| `src/` | EA, preflight source, and compiled builds. |
-| `profiles/` | Default, HFM, and MetaQuotes tester profiles. |
-| `docs/` | Strategy, setup, research, and validation notes. |
-| `evidence/` | Build logs and recorded test evidence. |
-| `scripts/` | Audits, relay, and research utilities. |
-| `checksums/` | Source and binary integrity records. |
+| `src/` | EA, read-only preflight probe, and compiled builds |
+| `profiles/` | Default, HFM, and MetaQuotes tester profiles |
+| `docs/` | Strategy, research, setup, and validation notes |
+| `evidence/` | Build logs and machine-readable test records |
+| `scripts/` | Static audits, Telegram relay, and research utilities |
+| `checksums/` | Source and binary integrity manifests |
+| `tests/` | Relay regression test and fixture |
 
-Profile names stay short because the broker or environment is already identified
-by its folder. Build logs preserve original compiler paths inside the file so the
-record remains traceable.
+## Notifications
 
-Contributions should improve safety, reproducibility, or evidence quality. A
-better in-sample curve alone is not enough to change the strategy. See
-`CONTRIBUTING.md` for the review checklist.
+The EA writes selected events to the MetaTrader Common Files outbox. An external
+relay sends them to Telegram, keeping network calls and credentials outside the
+trading path. See the [notification guide](docs/telegram.md).
+
+## License
+
+Released under the [MIT License](LICENSE). Trading and investment risk remain
+the responsibility of the operator; the software is provided without warranty.

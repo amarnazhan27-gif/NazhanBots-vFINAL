@@ -59,7 +59,7 @@ with deterministic contract arithmetic, not a MetaQuotes stand-in estimate.
 The v1.00 probe printed an incorrect capital pass because it ran before network
 authorization and accepted a zero `OrderCalcProfit` result. That output is
 explicitly rejected. Source v1.01 and later fail closed when calculated risk is
-not positive. See `HFM_LIVE_PREFLIGHT_EVIDENCE.json`.
+not positive. See `evidence/hfm/live-preflight.json`.
 
 ## Revalidated live preflight — 2026-08-20
 
@@ -87,7 +87,7 @@ from 0.000094 to 0.000225 lots, versus the broker minimum 0.01. Minimum-lot
 risk was 4%-11% per candidate. No order or deal occurred.
 
 At the configured 0.10% risk, those candidates imply roughly 4,000-11,000 USC
-minimum equity. See `HFM_TESTER_SMALL_BALANCE_EVIDENCE.json`.
+minimum equity. See `evidence/hfm/small-balance.json`.
 
 ## Corrected 525 USC HFM sizing test
 
@@ -104,5 +104,5 @@ deal occurred and the balance remained unchanged.
 
 The tester warned that 544 of 72,611 minute bars, or 0.7492%, had discarded or
 mismatched real ticks and used generated ticks for those affected minutes.
-This limitation is recorded in `HFM_TESTER_525_USC_EVIDENCE.json`; the run is
+This limitation is recorded in `evidence/hfm/capital-525.json`; the run is
 capital-safety evidence, not a profitability test or pure real-tick proof.
