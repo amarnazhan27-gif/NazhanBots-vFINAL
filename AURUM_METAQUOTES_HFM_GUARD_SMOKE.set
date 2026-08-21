@@ -1,0 +1,5 @@
+InpRequireCentCurrency=false
+InpRequireHfmEnvironment=true
+InpAllowRealAccount=false
+InpAuthorizedRealLogin=0
+InpDiagnosticLogging=true

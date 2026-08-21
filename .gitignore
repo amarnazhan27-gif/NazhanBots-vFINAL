@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+tests/__pycache__/
+*.py[cod]
+.env
+.env.*
+*.xml
+*_telegram_outbox.tsv
+telegram_relay.offset

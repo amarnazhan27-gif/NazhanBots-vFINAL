@@ -1,0 +1,66 @@
+{
+  "observed_at": "2026-08-20T16:35:27+07:00",
+  "status": "BROKER_PASS_CAPITAL_FAIL",
+  "scope": "read-only startup script on HFM live account",
+  "privacy": "account login, owner identity, and current balance intentionally omitted",
+  "artifact": {
+    "script_binary_version": "1.03",
+    "source_sha256": "7f9b0cd745661a85bc7dff5940edaba72ae3cf29f1da8041dc865b87b1eb532e",
+    "script_binary_sha256": "55f69ac9bef775dfceaff18887eb785021f1149f9b43dc89b430352030207ebd",
+    "compile_log_sha256": "566a7d61548ddf73af1b8fde6c392421934b9243d0a50a91695569f9aeeebe93",
+    "mql5_log_final_snapshot_sha256": "7b972759d67545aa9e1b6b22e0695be4a8c07a814a66b1d73f83680209798595",
+    "compile_result": "0 errors, 0 warnings, 1598 ms, X64 Regular"
+  },
+  "environment": {
+    "account_mode": "REAL",
+    "broker_identity_check": "PASS",
+    "account_currency": "USC",
+    "symbol": "XAUUSDc",
+    "profit_currency": "USD",
+    "contract_size_ounce_per_lot": 1.0,
+    "volume_min": 0.01,
+    "volume_step": 0.01,
+    "tick_size": 0.01,
+    "freeze_level_points": 8,
+    "spread_price": 0.36,
+    "atr_m1": 2.11429,
+    "atr_m5": 5.84714,
+    "model_stop_distance": 2.53714
+  },
+  "risk_calculation": {
+    "order_calc_profit_available_at_startup": false,
+    "method": "USD_TO_USC_X100_FALLBACK",
+    "fallback_preconditions": [
+      "account currency is USC",
+      "profit currency is USD",
+      "contract size is validated as 1 ounce per lot"
+    ],
+    "current_equity_available_at_probe_startup": false
+  },
+  "capital_cross_check_for_100_usc": {
+    "formula": "stop_distance * contract_size * volume_min * 100 USC_per_USD",
+    "minimum_lot_risk_usc": 2.53714,
+    "minimum_lot_risk_percent": 2.53714,
+    "target_risk_percent": 0.1,
+    "minimum_equity_for_target_risk_usc": 2537.14,
+    "capital_gate": "FAIL"
+  },
+  "historical_false_pass": {
+    "binary_version": "1.00",
+    "rejected_field": "OVERALL=PASS",
+    "reason": "the old script accepted a zero OrderCalcProfit result before authorization"
+  },
+  "safety_evidence": {
+    "auto_trading_disabled_in_start_config": true,
+    "transaction_api_static_scan": "PASS",
+    "script_reported_no_trade_operations": true,
+    "terminal_shutdown_after_probe": true,
+    "runtime_overall": "FAIL"
+  },
+  "readiness": {
+    "broker_identity_gate": "PASS",
+    "contract_gate": "PASS",
+    "capital_100_usc_gate": "FAIL",
+    "live_ready": false
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-08-20T17:49:09+07:00",
+  "status": "NOT_READY_FOR_REAL",
+  "tester": {
+    "broker": "MetaQuotes-Demo",
+    "symbol": "XAUUSD",
+    "period": "M1",
+    "model": "Every tick based on real ticks",
+    "execution_mode": "random delay",
+    "deposit": 10000,
+    "currency": "USD"
+  },
+  "artifact_sha256": {
+    "source": "da55e436c00e9c2a6b4a4a126ff17f96ca7f20ad5e189c6dd94c3941521b5432",
+    "binary": "814a17e55675118efb82128f7732ad33c8398397e2de17ec9bd381d19450401f",
+    "compile_log": "77087747f8bd111f477bfb310e202be3760eefab339a14736b39865dde1a97d4",
+    "tester_log": "709c80e8dac34e9d6940fdfccc813098496fb35e0754962a70e77b31fcf6068a",
+    "tester_preset": "700887a998c498b7ae124657b7f0baaca159f2c3d46c01e9edcb55dc0244ef09"
+  },
+  "tester_log": {
+    "path": "/Users/amarnazhan/Library/Application Support/net.metaquotes.wine.metatrader5-tronos-test/drive_c/Program Files/MetaTrader 5/Tester/logs/20260820.log",
+    "bytes": 126429130,
+    "modified": "2026-08-20T17:44:14+0700",
+    "risk_calculation_fallback_hits": 0
+  },
+  "runs": [
+    {
+      "year": 2021,
+      "wall_window": ["17:42:14.000", "17:42:14.999"],
+      "preset_sha256": "6d9fb7e9dc654b9f5760bb1c2c81fb87b4311f9cf94c3da75a5a391af89c0a9f",
+      "ticks": 27326856,
+      "trades": 21,
+      "net": -57.43,
+      "profit_factor": 0.5868,
+      "max_drawdown": 98.80,
+      "test_passed": true
+    },
+    {
+      "year": 2022,
+      "wall_window": ["17:42:54.000", "17:42:54.999"],
+      "preset_sha256": "6531f7082c67901239b7e209fc89b78fb434cb3add668e20594342228d06684d",
+      "ticks": 30530718,
+      "trades": 24,
+      "net": 20.21,
+      "profit_factor": 1.1714,
+      "max_drawdown": 44.90,
+      "test_passed": true
+    },
+    {
+      "year": 2023,
+      "wall_window": ["17:43:21.000", "17:43:21.999"],
+      "preset_sha256": "a480aa8b736179a6ee5595cc570dbd79963d14782b578d9a36d75997e13c91f6",
+      "ticks": 36616460,
+      "trades": 24,
+      "net": 87.16,
+      "profit_factor": 1.9575,
+      "max_drawdown": 25.07,
+      "test_passed": true
+    },
+    {
+      "year": 2024,
+      "wall_window": ["17:43:49.000", "17:43:49.999"],
+      "preset_sha256": "f65dd3e68d136983b5553353bca56789babd03dda269da410ae3cd11714468f5",
+      "ticks": 38094869,
+      "trades": 17,
+      "net": 16.64,
+      "profit_factor": 1.2043,
+      "max_drawdown": 47.57,
+      "test_passed": true
+    },
+    {
+      "year": 2025,
+      "wall_window": ["17:44:14.000", "17:44:14.999"],
+      "preset_sha256": "d13fbfe73a077a9d2b55496b556551f651fe592941a9180770d9b0ba7f8d5326",
+      "ticks": 34010622,
+      "trades": 22,
+      "net": 37.73,
+      "profit_factor": 1.4302,
+      "max_drawdown": 28.42,
+      "test_passed": true
+    }
+  ],
+  "combined": {
+    "ticks": 166579525,
+    "trades": 108,
+    "wins": 50,
+    "losses": 58,
+    "net": 104.31,
+    "profit_factor": 1.2017,
+    "max_drawdown": 108.11,
+    "bootstrap_simulations": 100000,
+    "bootstrap_probability_non_positive": 0.17256,
+    "bootstrap_drawdown_p95": 170.4705,
+    "friction_net": {
+      "0.00": 104.31,
+      "0.50": 50.31,
+      "1.00": -3.69,
+      "1.50": -57.69,
+      "2.00": -111.69
+    }
+  },
+  "blocking_gates": [
+    "combined edge fails 1.00-per-trade friction stress",
+    "2021 real-tick result is negative",
+    "longer independent HFM real-tick walk-forward evidence is missing",
+    "native USC Strategy Tester accounting remains unavailable locally",
+    "HFM server time and DST are unverified",
+    "multi-month HFM forward demo is missing",
+    "525 USC cannot preserve the configured 0.10 percent risk at minimum volume"
+  ]
+}

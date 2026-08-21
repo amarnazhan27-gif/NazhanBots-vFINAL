@@ -1,0 +1,81 @@
+{
+  "observed_at": "2026-08-20T17:46:49+07:00",
+  "status": "POSITIVE_BUT_INSUFFICIENT",
+  "scope": "HFM XAUUSDc release-equivalent research",
+  "artifact_sha256": {
+    "ea_source": "da55e436c00e9c2a6b4a4a126ff17f96ca7f20ad5e189c6dd94c3941521b5432",
+    "ea_binary": "814a17e55675118efb82128f7732ad33c8398397e2de17ec9bd381d19450401f",
+    "preset": "42fc1cb144d4d8a5e972425f167d4f38c216ecf73eb4d337779db14770e1a833",
+    "tester_config": "6657e7441b4e5028c075f4f0528968ecc2921b1286dd117d75b1327defae9d7c",
+    "tester_log_final_snapshot": "6d8cdf8057f8b33376ee96d7972e0940022d161cf255ba223e4e55d74ddac041"
+  },
+  "tester": {
+    "log_wall_time": "17:46:49.180",
+    "server": "HFMarketsGlobal-Live15",
+    "symbol": "XAUUSDc",
+    "period": "M1",
+    "from": "2026-06-01",
+    "to": "2026-08-13",
+    "model": "Every tick based on real ticks",
+    "execution_mode": "random delay",
+    "ticks": 17210479,
+    "bars": 72611,
+    "test_passed": true
+  },
+  "capital_model": {
+    "deposit": 100.0,
+    "deposit_currency": "USD",
+    "equivalent_to_usc": 10000,
+    "cent_currency_guard_disabled": true,
+    "reason": "native USC tester attempt lacked current USDUSC conversion history"
+  },
+  "release_equivalence": {
+    "risk_percent": 0.1,
+    "maximum_trades_per_day": 1,
+    "asia_enabled": false,
+    "london_enabled": true,
+    "new_york_enabled": true,
+    "session_direction_filter": true,
+    "economic_calendar_enabled": true,
+    "calendar_fail_closed": true,
+    "us_data_window_enabled": true,
+    "notification_outbox_disabled_for_test": true
+  },
+  "sample": {
+    "trades": 7,
+    "wins": 4,
+    "losses": 3,
+    "net_usd": 0.19,
+    "return_percent": 0.19,
+    "profit_factor": 1.8261,
+    "max_drawdown_usd": 0.15,
+    "bootstrap_simulations": 100000,
+    "bootstrap_probability_non_positive": 0.21164,
+    "bootstrap_drawdown_p95_usd": 0.33,
+    "friction_net_usd": {
+      "0.00_per_trade": 0.19,
+      "0.01_per_trade": 0.12,
+      "0.02_per_trade": 0.05,
+      "0.03_per_trade": -0.02,
+      "0.05_per_trade": -0.16
+    },
+    "risk_calculation_fallback_hits": 0
+  },
+  "readiness": {
+    "profitability_gate": "FAIL_INSUFFICIENT_SAMPLE",
+    "capital_100_usc_gate": "FAIL",
+    "live_ready": false,
+    "reasons": [
+      "only seven trades and roughly two and a half months",
+      "bootstrap probability of non-positive result exceeds 21 percent",
+      "small additional friction erases the result",
+      "100 USC cannot reach minimum volume at target risk",
+      "forward demo evidence is missing"
+    ]
+  },
+  "build": {
+    "version": "1.34",
+    "risk_calculation_path": "native OrderCalcProfit in USD-equivalent tester",
+    "usc_fallback_exercised_in_this_test": false
+  }
+}

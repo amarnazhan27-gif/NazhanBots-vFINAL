@@ -1,0 +1,77 @@
+{
+  "observed_at": "2026-08-20T18:04:20+07:00",
+  "status": "FAIL_CAPITAL_SAFE_NO_TRADE",
+  "scope": "HFM XAUUSDc 525 USC value-equivalent sizing diagnostic",
+  "artifact_sha256": {
+    "ea_source": "da55e436c00e9c2a6b4a4a126ff17f96ca7f20ad5e189c6dd94c3941521b5432",
+    "ea_binary": "814a17e55675118efb82128f7732ad33c8398397e2de17ec9bd381d19450401f",
+    "preset": "1a7ae18dde299d2a93e3b1b31bf2748d81077645fb6594c31969b25181c9aa88",
+    "tester_config": "c9018c2b478dc9824276aea4c6059049934209073714a224824a0dc918844dfa",
+    "normalized_log_snapshot": "fd5056eb4a82fa07fa39c0c5c0f391f63400f33e2552995ddf7793e52caa3e33"
+  },
+  "tester": {
+    "log_wall_time": "18:03:09.471",
+    "symbol": "XAUUSDc",
+    "period": "M1",
+    "from": "2026-06-01",
+    "to": "2026-08-13",
+    "model_requested": "Every tick based on real ticks",
+    "execution_mode": "random delay",
+    "ticks": 17210479,
+    "bars": 72611,
+    "test_passed": true,
+    "data_quality_warning": {
+      "affected_minutes": 544,
+      "affected_minutes_percent": 0.7492,
+      "tick_price_mismatches": 146075,
+      "tester_fallback": "every tick generation used for affected minutes"
+    }
+  },
+  "broker_spec": {
+    "contract_size_ounce_per_lot": 1.0,
+    "minimum_lot": 0.01,
+    "volume_step": 0.01,
+    "tick_size": 0.01,
+    "tick_value_usd_equivalent": 0.01
+  },
+  "capital_model": {
+    "user_capital_usc": 525,
+    "target_risk_percent_usc": 0.1,
+    "target_risk_money_usc": 0.525,
+    "tester_deposit_usd": 5.0,
+    "tester_risk_percent": 0.105,
+    "tester_risk_money_usd": 0.00525,
+    "equivalence": "USD 0.00525 risk budget equals 0.525 USC",
+    "cent_currency_guard_disabled_for_diagnostic": true,
+    "reason": "fractional tester deposits are rounded and native USC testing lacks required USDUSC conversion history"
+  },
+  "result": {
+    "valid_setup_candidates": 11,
+    "volume_below_min_rejections": 11,
+    "raw_volume_min": 0.000495,
+    "raw_volume_max": 0.00118,
+    "minimum_lot_required_risk_percent_525_usc_min_approx": 0.847458,
+    "minimum_lot_required_risk_percent_525_usc_max_approx": 2.020202,
+    "minimum_lot_risk_usc_min_approx": 4.449153,
+    "minimum_lot_risk_usc_max_approx": 10.606061,
+    "equity_needed_for_0_1_percent_risk_usc_min_approx": 4449.153,
+    "equity_needed_for_0_1_percent_risk_usc_max_approx": 10606.061,
+    "risk_calculation_fallback_hits": 0,
+    "orders": 0,
+    "deals": 0,
+    "starting_balance_usd": 5.0,
+    "final_balance_usd": 5.0
+  },
+  "interpretation": {
+    "capital_gate": "FAIL",
+    "safety_path": "PASS",
+    "profitability_test": false,
+    "reason_not_profitability_test": "diagnostic preset disables calendar and news vetoes, and every valid setup remains below minimum volume"
+  },
+  "build": {
+    "version": "1.34",
+    "real_account_support_enabled": false,
+    "risk_calculation_path": "native OrderCalcProfit in USD-equivalent tester",
+    "usc_fallback_exercised_in_this_test": false
+  }
+}

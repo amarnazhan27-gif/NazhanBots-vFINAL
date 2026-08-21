@@ -1,0 +1,23 @@
+Normalized excerpt from MetaTrader 5 Tester/logs/20260820.log
+Run wall time: 2026-08-20 18:03:09 Asia/Jakarta
+Purpose: 525 USC value-equivalent HFM XAUUSDc M1 capital diagnostic
+
+testing with execution random delay
+AURUM|BROKER_SPEC|contract=1.0000|min_lot=0.0100|step=0.0100|tick_size=0.01000|tick_value=0.01000
+AURUM|INIT_OK|symbol=XAUUSDc|period=M1|currency=USD|balance=5.00|risk_pct_display=0.10|min_lot=0.0100|real_authorized=false
+INPUT_NOTE|InpRiskPerTradePct=0.105|risk_budget_usd=0.00525|value_equivalent_usc=525|target_risk_pct_usc=0.10
+DATA_WARNING|real_ticks_discarded_minutes=544|total_minute_bars=72611|every_tick_generation_used_for_affected_minutes=true
+DATA_WARNING|tick_volume_mismatch_minutes=541|tick_price_mismatch_minutes=544|tick_price_mismatch_count=146075
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000775|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000612|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000537|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000495|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.001180|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000916|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000848|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.001010|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.001002|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000702|min=0.0100|risk=0.0053
+AURUM|NO_TRADE|reason=VOLUME_BELOW_MIN|raw=0.000810|min=0.0100|risk=0.0053
+final balance 5.00 USD
+XAUUSDc,M1: 17210479 ticks, 72611 bars generated. Test passed.

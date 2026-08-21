@@ -1,0 +1,65 @@
+{
+  "observed_at": "2026-08-20T17:46:05+07:00",
+  "status": "FAIL_CAPITAL_SAFE_NO_TRADE",
+  "scope": "HFM XAUUSDc real-tick sizing diagnostic",
+  "artifact_sha256": {
+    "ea_source": "da55e436c00e9c2a6b4a4a126ff17f96ca7f20ad5e189c6dd94c3941521b5432",
+    "ea_binary": "814a17e55675118efb82128f7732ad33c8398397e2de17ec9bd381d19450401f",
+    "preset": "ce8afd941290dac0c62fb2bbf24607efec570d2358d42f9a9b0188a10348fd9d",
+    "tester_config": "4e91e41fefb0517fbdb266601aa4c09a2d985c4aa74d315c5dabc81c2f24e79f",
+    "tester_log_final_snapshot": "6d8cdf8057f8b33376ee96d7972e0940022d161cf255ba223e4e55d74ddac041"
+  },
+  "tester": {
+    "log_wall_time": "17:46:05.359",
+    "server": "HFMarketsGlobal-Live15",
+    "symbol": "XAUUSDc",
+    "period": "M1",
+    "from": "2026-06-01",
+    "to": "2026-08-13",
+    "model": "Every tick based on real ticks",
+    "execution_mode": "random delay",
+    "ticks": 17210479,
+    "bars": 72611,
+    "test_passed": true
+  },
+  "broker_spec": {
+    "contract_size": 1.0,
+    "minimum_lot": 0.01,
+    "volume_step": 0.01,
+    "tick_size": 0.01,
+    "tick_value_usd_equivalent": 0.01
+  },
+  "capital_model": {
+    "deposit": 1.0,
+    "deposit_currency": "USD",
+    "equivalent_to_usc": 100,
+    "target_risk_percent": 0.1,
+    "target_risk_money_usd": 0.001,
+    "cent_currency_guard_disabled_for_diagnostic": true,
+    "reason": "native USC tester attempt stopped because 2026 USDUSC conversion history was unavailable"
+  },
+  "result": {
+    "valid_setup_candidates": 11,
+    "volume_below_min_rejections": 11,
+    "raw_volume_min": 0.000094,
+    "raw_volume_max": 0.000225,
+    "minimum_lot_required_risk_percent_min": 4.0,
+    "minimum_lot_required_risk_percent_max": 11.0,
+    "risk_calculation_fallback_hits": 0,
+    "orders": 0,
+    "deals": 0,
+    "starting_balance": 1.0,
+    "final_balance": 1.0
+  },
+  "interpretation": {
+    "capital_gate": "FAIL",
+    "safety_path": "PASS",
+    "profitability_test": false,
+    "reason_not_profitability_test": "diagnostic preset disables calendar/news vetoes and no candidate can reach minimum volume"
+  },
+  "build": {
+    "version": "1.34",
+    "risk_calculation_path": "native OrderCalcProfit in USD-equivalent tester",
+    "usc_fallback_exercised_in_this_test": false
+  }
+}
